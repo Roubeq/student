@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "func.h"
 #include <stdbool.h>
+#include <string.h>
 void create(game**arr,int*n){
 	printf("Enter the number of games - ");
 	scanf("%d",n);
@@ -21,9 +22,10 @@ void create(game**arr,int*n){
 void read(game**arr,int*n){
 	FILE*f=fopen("file.txt","r");
 	if(!f) return;
-	if(fscanf(f,"%d",n)!=1)
+	if(fscanf(f,"%d",n)!=1) {
 		fclose(f);
 		return;
+	}
 	if(*n<=0) return;
 	*arr=(game*)calloc(*n,sizeof(game));
 	for (int i=0;i<*n;i++) {
@@ -41,9 +43,9 @@ void write (game*arr, int n){
 	}
 	fclose(f);
 }
-void search (game*arr, int n) {
+void search (game*arr, int * n) {
 	int typeSearch;
-	printf("Enter the type of search - \n 1. Search by name \n 2. Search by price(<=) 3. Search by rating(>=)");/*пользователь, не 		надо сюда буквы вводить или числа плиз, ну ты понимаешь у тебя три варианта - 1 2 3, больше чисел и букв не существует))))*/
+	printf("Enter the type of search - \n1. Search by name \n2. Search by price(<=) \n3. Search by rating(>=)\n");/*пользователь, не 		надо сюда буквы вводить или числа плиз, ну ты понимаешь у тебя три варианта - 1 2 3, больше чисел и букв не существует))))*/
 	scanf("%d",&typeSearch);
 	switch(typeSearch) {
 		case 1: {
@@ -51,8 +53,8 @@ void search (game*arr, int n) {
 			bool flag = false;
 			printf("Enter a name -");
 			scanf("%s",word);
-			for (int i; i<n;i++) {
-				if(word == arr[i].name) {
+			for (int i=0; i<*n;i++) {
+				if(!strcmp(word,arr[i].name)) {
 					printf("Found - %s %f %f\n",arr[i].name,arr[i].price,arr[i].rating);
 					flag = true;
 				}
@@ -65,7 +67,7 @@ void search (game*arr, int n) {
 			bool flag = false;
 			printf("Enter a price -");
 			scanf("%f",&price);
-			for (int i; i<n; i++) {
+			for (int i=0; i<*n; i++) {
 				if (arr[i].price <= price) {
 					printf("Found a game - %s %f %f \n",arr[i].name,arr[i].price,arr[i].rating);
 					flag = true;
@@ -73,15 +75,15 @@ void search (game*arr, int n) {
 			}
 			if (flag == false) {
 				printf("Nothing found \n");
-				break;
 			}
+			break;
 		}
 		case 3: {
 			double rating;
 			bool flag;
 			printf("Enter a rating -");
 			scanf("%lf",&rating);
-			for (int i; i<n;i++){
+			for (int i = 0; i<*n;i++){
 				if (rating >= arr[i].rating){
 					printf("Found a game - %s %f %f",arr[i].name,arr[i].price,arr[i].rating);
 					flag = true;
@@ -89,8 +91,8 @@ void search (game*arr, int n) {
 			}
 			if (flag == false) {
 				printf("Nothing found");
-				break;
 			}
+			break;
 		}
 		default:
 			break;

@@ -77,7 +77,7 @@ int main() {
 					}
 					else
 					{
-						search(arr,n);
+						search(arr,&n);
 					}
 				break;
 			default:
@@ -86,6 +86,5 @@ int main() {
 		}
 	}
 	if (arr) free(arr);
-	system("clear");
 	return 0;
 }
