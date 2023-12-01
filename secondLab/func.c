@@ -73,8 +73,8 @@ void search (game*arr, int n) {
 			}
 			if (flag == false) {
 				printf("Nothing found \n");
-				break;
 			}
+			break;
 		}
 		case 3: {
 			double rating;
