@@ -3,9 +3,30 @@
 #include "func.h"
 #include <stdbool.h>
 #include <string.h>
+int checkString(int *m){
+        if(scanf("%u", m)==1)
+                return 0;
+        else{
+                printf("Error|Please enter the number\n");
+                while(getchar()!='\n');
+                return 1;
+        }
+}
+float checkFloatString(float *j){
+	if(scanf("%f",j)==1){
+		return 0;
+	}
+	else{
+		printf("Error|Please enter the number\n");
+		while(getchar()!='\n');
+		return 1;
+	}
+}
 void create(game**arr,int*n){
 	printf("Enter the number of games - ");
-	scanf("%d",n);
+	if(checkString(n)) {
+		return;
+	}
 	if(*n<=0)
 		return;
 	*arr=(game*)calloc(*n,sizeof(game));
@@ -14,10 +35,14 @@ void create(game**arr,int*n){
 		printf("name -");
 		scanf("%s",(*arr)[i].name);
 		printf("price -");
-		scanf("%f",&(*arr)[i].price);
+		if(checkFloatString(&(*arr)[i].price)) {
+			return;
+		}
 		printf("rating -");
-		scanf("%f",&(*arr)[i].rating); 
-	};
+		if(checkFloatString(&(*arr)[i].price)) {
+			return;
+		} 
+	}
 }
 void read(game**arr,int*n){
 	FILE*f=fopen("file.txt","r");
