@@ -9,5 +9,5 @@ namespace Func {
     void find(Game* arr, int* n, int nn);
     void edit(Game* arr);
     void read(Game** arr, int* n);
-    void removeElement(Game* arr, int& n, int index);
+    void removeElement(Game*& arr, int& n, int index);
 }

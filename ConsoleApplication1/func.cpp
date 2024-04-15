@@ -1,7 +1,6 @@
 #include "Func.h"
 #include <fstream>
 #include <iostream>
-using namespace std;
 #include <string>
 
 void Func::save(Game* arr, const int& n) {
@@ -148,17 +147,22 @@ void Func::read(Game** arr, int* n) {
 }
 
 
-
-
-void Func::removeElement(Game* arr, int& n, int index) {
+void Func::removeElement(Game*& arr, int& n, int index) {
     if (index < 0 || index >= n) {
-        std::cout << "Error: index out of range" << std::endl;
+        std::cout << "index out of range" << std::endl;
         return;
     }
 
-    for (int i = index; i < n - 1; ++i) {
-        arr[i] = arr[i + 1];
-    }
+    Game* newArr = new Game[n - 1];
+    int newArrIndex = 0;
 
+    for (int i = 0; i < n; ++i) {
+        if (i != index) {
+            newArr[newArrIndex] = arr[i];
+            ++newArrIndex;
+        }
+    }
+    delete[] arr;
+    arr = newArr;
     --n;
 }

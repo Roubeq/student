@@ -39,6 +39,6 @@ std::istream& operator>>(std::istream& in, Game& game) {
 
 // Перегрузка оператора вывода для класса Game
 std::ostream& operator<<(std::ostream& out, const Game& game) {
-    out << "Name: " << game.name << ", Price: " << game.price << ", Rating: " << game.rating;
+    out << game.name << "\t " << game.price << "\t" << game.rating;
     return out;
 }

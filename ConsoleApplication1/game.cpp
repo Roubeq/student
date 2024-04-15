@@ -2,10 +2,6 @@
 #include "Game.h"
 #include "func.h"
 
-using namespace std;
-
-
-
 int main() {
     Game* arr = nullptr;
     int n = 0;
@@ -32,8 +28,19 @@ int main() {
             }
             break;
         case 3:
-            for (int i = 0; i < n; i++)
-                std::cout << "Name: " << arr[i].getName() << ", Price: " << arr[i].getPrice() << ", Rating: " << arr[i].getRating() << std::endl;
+            if (arr == nullptr) {
+                std::cout << "Array is empty" << std::endl;
+            }
+            else {
+                if (n == 0) {
+                    std::cout << "Array is empty" << std::endl;
+                }
+                else {
+                    std::cout << "Array is not empty" << std::endl;
+                    for (int i = 0; i < n; i++)
+                        std::cout << "Name: " << arr[i].getName() << ", Price: " << arr[i].getPrice() << ", Rating: " << arr[i].getRating() << std::endl;
+                }
+            }
             break;
         case 4:
             std::cout << "1-search by name, 2-search by price, 3-search by rating" << std::endl;
@@ -55,7 +62,7 @@ int main() {
 
             if (index >= 0 && index < n) {
                 Func::edit(&arr[index]);
-                Func::save(arr, n); // Save changes after editing
+                Func::save(arr, n);
             }
             else {
                 std::cout << "Invalid index." << std::endl;

@@ -1,1 +1,5 @@
-﻿LINK : fatal error LNK1104: не удается открыть файл "C:\Users\Artem\Desktop\1lab\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe"
+﻿  game.cpp
+  func.cpp
+  GameFunc.cpp
+  Создание кода...
+  ConsoleApplication1.vcxproj -> C:\Users\Artem\Desktop\1lab\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe
